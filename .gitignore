@@ -1,0 +1,6 @@
+data/
+env/
+.DS_Store
+*.pyc
+*.png
+*.csv

@@ -1,0 +1,21 @@
+symbol:
+  nasdaq100: 'nasdaq100_symbols'
+  russel2000: 'russel2000_symbols'
+  sp500: 'sp500_financials'
+  dow30: 'dow30_symbols'
+trading:
+  weekly:
+    nasdaq100: 'nasdaq100_w_trading'
+    russel2000: 'russel2000_w_trading'
+    sp500: 'sp500_w_trading'
+    dow30: 'dow30_w_trading'
+  daily:
+    nasdaq100: 'nasdaq100_d_trading'
+    russel2000: 'russel2000_d_trading'
+    sp500: 'sp500_d_trading'
+    dow30: 'dow30_d_trading'
+folder:
+  symbol: 'data'
+  trading: 'data'
+  results: 'data/results'
+  plots: 'plots'
