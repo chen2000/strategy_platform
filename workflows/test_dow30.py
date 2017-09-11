@@ -6,9 +6,12 @@ from strategy_platform.strategies.test_triggers import trigger_symbol_stats
 
 import csv
 import os
+import sys
+import time
+
 
 start_date = '2007-01-01'
-end_date = '2017-08-09'
+end_date = time.strftime("%Y-%m-%d")
 index = 'dow30'
 source = 'g_1year'	#yahoo or g_1year
 
