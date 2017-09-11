@@ -294,3 +294,32 @@ search 2 year
 中期趋势
 
 抢反弹
+
+
+
+
+
+FA 怎么看ER
+EBIDTA    就是收入，扣除了前期投资折旧和运营成本
+
+EBIDTA是主要收入指标
+
+对turnaround公司，EBIDTA会被manipulate，因为折旧费是一个公司操纵的东西
+
+对turnaround公司，着重看cash flow和debt，还有主要的买卖资产
+期限看一年，因为有的债是一年还一次
+
+去年同期的手中cash多少，对比今年，表名 CASH FLOW DATA
+去年同期的手中Principal amount of debt outstanding多少，对比今年
+debt包含短期current和长期longterm还有stock deficit
+
+interest expense很不规则，每个季度有很大区别，不建议看
+
+比如CHK，6个月前有882million的cash，现在只有13million，
+6个月前9989million的debt, 现在有9710 million
+cash减少869million，但债务只减少279million
+也就是说债务比cash减少的少很多，
+实际有590million亏损
+
+
+
