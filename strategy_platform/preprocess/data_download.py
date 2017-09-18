@@ -9,9 +9,10 @@ import StringIO
 import urllib2
 
 
-targeted_format = ['Symbol', 'Date', 'High', 'Low', 'Open', 'Close',  'Adj_Close', 'Volume']
+targeted_format = ['Symbol', 'Date', 'High', 'Low', 'Open', 'Close', 'Adj_Close', 'Volume']
 yahoo_targeted_map = [1, 4, 2, 3, 5, 7, 6]
 g_1year_targeted_map = {1:0, 2:2, 3:3, 4:1, 5:4, 6:4, 7:5}
+quandl_targeted_map = {1:0, 2:2, 3:3, 4:1, 5:4, 6:11, 7:5}
 TimeSeg = namedtuple('TimeSeg', ['year', 'month', 'date'])
 
 
@@ -71,6 +72,9 @@ def make_url(source, symbol, start_date='2017-01-01', end_date='2017-01-02', fre
 		# g 1 year only gives current 1 year data
 		url = "https://www.google.com/finance/historical?output=csv&q={symbol}"\
 			.format(symbol=symbol)
+	elif source == 'quandl':
+		url = "https://www.quandl.com/api/v3/datasets/WIKI/{symbol}/data.csv?api_key=QsLx85TxiSx6zD_spWGh"\
+			.format(symbol=symbol)
 	else:
 		raise NameError('Not an exisisting source!')
 	return url
@@ -91,6 +95,9 @@ def retry_download(source, symbol, start_date='2017-01-01', end_date='2017-01-02
 				response = subprocess.check_output("curl \'" + url + "\'", shell=True)
 				data = response[7:]
 			elif source == 'g_1year':
+				response = subprocess.check_output("curl \'" + url + "\'", shell=True)
+				data = csvstr_ll(response)[1:]
+			elif source == 'quandl':
 				response = subprocess.check_output("curl \'" + url + "\'", shell=True)
 				data = csvstr_ll(response)[1:]
 			else:
@@ -130,6 +137,18 @@ def download_batch(source, symbols, batch_name, start_date, end_date, frequency,
 				csv_row = [symbol] + [None] * len(yahoo_targeted_map)
 				for i in xrange(len(yahoo_targeted_map)):
 					csv_row[yahoo_targeted_map[i]] = row[i]
+				trading_csv.append(csv_row)
+		trading_csv.insert(0, targeted_format)
+	elif source == 'quandl':
+		# to avoid overwrite yahoo and google  data by quandl data
+		output_file = output_file[:-5] + "_quandl.csv"
+		trading_csv = []
+		for symbol in symbols:
+			trading_raw = retry_download(source, symbol)
+			for row in trading_raw:
+				csv_row = [symbol] + [None] * len(quandl_targeted_map)
+				for i in quandl_targeted_map:
+					csv_row[i] = row[quandl_targeted_map[i]]
 				trading_csv.append(csv_row)
 		trading_csv.insert(0, targeted_format)
 	else:

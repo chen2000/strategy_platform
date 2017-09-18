@@ -13,11 +13,10 @@ import time
 start_date = '2007-01-01'
 end_date = time.strftime("%Y-%m-%d")
 index = 'dow30'
-source = 'g_1year'	#yahoo or g_1year
-
+source = 'quandl'	#yahoo or g_1year or quandl
 
 wdf = preprocess(source, index, start_date, end_date, force_rerun=True, force_rerun_ta=True)
-wdf = preprocess(source, index, start_date, end_date, force_rerun=False, force_rerun_ta=False)
+# wdf = preprocess(source, index, start_date, end_date, force_rerun=False, force_rerun_ta=False)
 
 a, b, success_window = 5, 2, 3
 # test rules per symbol
@@ -39,9 +38,6 @@ os.system('cat data/results/accumulated_trigger_table.csv | mailx -s "Strategy P
 
 # for symbol in symbols:
 #     (stats_table, trigger_table) = trigger_symbol_stats_selling_strategy(symbol, index, a, b, success_window, up_rate, down_rate)
-
-
-
 
 # res_show = pd.DataFrame()
 # for symbol in symbols:
