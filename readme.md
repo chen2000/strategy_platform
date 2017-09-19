@@ -19,8 +19,14 @@ Alternative:
   https://www.google.com/finance/getprices?i=86400&p=7d&f=d,o,h,l,c,v&df=cpct&q=IBM
   86400 is # of seconds for each period, p=7d is the whole time frame,
 
-2. QuantQuote
-  h
+2. Quandl
+    Provide higher quality data than Google
+    free access with API key viewable from account profile
+    website (lchen1688888 is the user name):
+    https://blog.quandl.com/api-for-stock-data
+    API documentation:
+    https://docs.quandl.com/docs/in-depth-usage#section-get-filtered-time-series-data
+
 
 finviz channel up and 52 week up is a useful tool. triagnel ascending has high fpr 
 

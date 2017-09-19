@@ -53,23 +53,7 @@ def preprocess(source, index, start_date, end_date, force_rerun=True, force_reru
         for symbol in symbols:
             fname = os.path.join(directory, symbol + '_ta.csv')
 
-            if source == 'g_1year':  # avoid overwrite
-                fname = fname[:-5] + '_1year.csv'
-                if force_rerun == False and os.path.exists(fname):
-                    continue
-                df = daily_data.loc[daily_data['Symbol'] == symbol]
-                df = df.iloc[::-1].reset_index().drop('index', axis=1)
-                df = ma(df, 20)
-                df = ma(df, 50)
-                df = b_bands(df, 20)
-                df = rsi(df, 14)
-                df = sto_k(df, 14)
-                df = sto_d(df, 14)
-                df = macd(df, 12, 26)
-                df.to_csv(fname, index=False)
-
-            if source == 'q_5year':
-                fname = fname[:-5] + '_q_5year.csv'
+            if source in ('g_1year', 'quandl'):  # avoid overwrite
                 if force_rerun == False and os.path.exists(fname):
                     continue
                 df = daily_data.loc[daily_data['Symbol'] == symbol]
