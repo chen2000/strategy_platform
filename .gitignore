@@ -6,3 +6,4 @@ env/
 *.csv
 cronlog.txt
 set_env.sh
+trigger_cron.sh
