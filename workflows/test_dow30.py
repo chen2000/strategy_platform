@@ -42,7 +42,7 @@ df.Gain = pd.Series(["{0:.2f}%".format(val * 100) for val in df.Gain], index = d
 res_df.to_csv('data/results/accumulated_trigger_table.csv', sep=',', index=False)
 #sent emails
 os.system('cat data/results/accumulated_trigger_table.csv | mailx -s "Strategy Platform Trigger" \
-         "lchen1688888@gmail.com, Fenhua.he@gmail.com, jianbin.he@gmail.com"')
+         "lchen1688888@gmail.com, Fenhua.he@gmail.com, jianbin.he@gmail.com, fenhua_he@yahoo.com"')
 
 
 # for symbol in symbols:
