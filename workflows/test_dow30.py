@@ -16,7 +16,7 @@ end_date = str(datetime.date.today())
 trigger_start_date = str(datetime.date.today()-datetime.timedelta(14))
 index = 'dow30'
 source = 'quandl'	#yahoo or g_1year or quandl
-a, b, success_window = 5, 2, 3
+a, b, success_window = 5, 2, 0 	# success_window=0 for forecast realtime
 
 wdf = preprocess(source, index, start_date, end_date, force_rerun=True, force_rerun_ta=True)
 # wdf = preprocess(source, index, start_date, end_date, force_rerun=False, force_rerun_ta=False)
