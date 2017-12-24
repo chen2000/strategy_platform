@@ -7,7 +7,7 @@ import pandas as pd
 from config.config import settings
 
 
-def trigger_sporadic(symbol, index, success_window=None):
+def trigger_sporadic(symbol, index, success_window=0):
     trigger = []
     df = pd.read_csv(os.path.join(settings['folder']['trading'], index, symbol + '_ta.csv'))
 
@@ -16,7 +16,7 @@ def trigger_sporadic(symbol, index, success_window=None):
             trigger.append(df.ix[i+1:i+1+success_window, ['Date', 'Close']])
     return trigger
 
-def trigger_macd_trend(symbol, index, a, b, success_window=None):
+def trigger_macd_trend(symbol, index, a, b, success_window=0):
     """
     a is num of days with macd diff neg
     b is num of days with macd diff pos
@@ -41,7 +41,7 @@ def trigger_macd_trend(symbol, index, a, b, success_window=None):
                 trigger.append(df.ix[i+a+b:i+a+b+success_window, ['Date', 'MACD_12_26', 'MACDdiff_12_26', 'Close']])
     return trigger
 
-def trigger_rsi_trend(symbol, index, a, b, success_window=None):
+def trigger_rsi_trend(symbol, index, a, b, success_window=0):
     """
     a is num of days with macd diff neg
     b is num of days with macd diff pos
@@ -59,7 +59,7 @@ def trigger_rsi_trend(symbol, index, a, b, success_window=None):
                 trigger.append(df.ix[i+a+b:i+a+b+success_window, ['Date', 'RSI_14', 'Close']])
     return trigger
 
-def trigger_rsi_low(symbol, index, success_window=None):
+def trigger_rsi_low(symbol, index, success_window=0):
     trigger = []
     df = pd.read_csv(os.path.join(settings['folder']['trading'], index, symbol + '_ta.csv'))
     for i in xrange(df.shape[0] - success_window):
@@ -69,7 +69,7 @@ def trigger_rsi_low(symbol, index, success_window=None):
             trigger.append(df.ix[i:i+success_window, ['Date', 'RSI_14', 'Close']])
     return trigger
 
-def trigger_rsi_high(symbol, index, success_window=None):
+def trigger_rsi_high(symbol, index, success_window=0):
     trigger = []
     df = pd.read_csv(os.path.join(settings['folder']['trading'], index, symbol + '_ta.csv'))
     for i in xrange(df.shape[0] - success_window):
@@ -79,7 +79,7 @@ def trigger_rsi_high(symbol, index, success_window=None):
             trigger.append(df.ix[i:i+success_window, ['Date', 'RSI_14', 'Close']])
     return trigger
 
-def trigger_bband_upbreak(symbol, index, a, success_window=None):
+def trigger_bband_upbreak(symbol, index, a, success_window=0):
     """
     a is num of days above mid of bband
     success_window is num of days keeping track of price after trigger
@@ -94,7 +94,7 @@ def trigger_bband_upbreak(symbol, index, a, success_window=None):
             trigger.append(df.ix[i+a:i+a+success_window, ['Date', 'BollingerUpper20', 'Close', 'MA_20']])
     return trigger
 
-def trigger_bband_downbreak(symbol, index, a, success_window=None):
+def trigger_bband_downbreak(symbol, index, a, success_window=0):
     """
     a is num of days above mid of bband
     success_window is num of days keeping track of price after trigger
@@ -109,7 +109,7 @@ def trigger_bband_downbreak(symbol, index, a, success_window=None):
             trigger.append(df.ix[i+a:i+a+success_window, ['Date', 'BollingerLower20', 'Close', 'MA_20']])
     return trigger
 
-def trigger_bband_lowerflat(symbol, index, a, success_window=None):
+def trigger_bband_lowerflat(symbol, index, a, success_window=0):
     """
     a is num of days above mid of bband
     success_window is num of days keeping track of price after trigger
@@ -126,7 +126,7 @@ def trigger_bband_lowerflat(symbol, index, a, success_window=None):
             trigger.append(df.ix[i+a:i+a+success_window, ['Date', 'BollingerUpper20', 'Close', 'MA_20']])
     return trigger
 
-def trigger_above_20wma(symbol, index, n, success_window=None):
+def trigger_above_20wma(symbol, index, n, success_window=0):
     """
     If the symbol has been above 10 week ma for n weeks, trigger a buying signal.
     """
@@ -141,7 +141,7 @@ def trigger_above_20wma(symbol, index, n, success_window=None):
             trigger.append(df.ix[i+n:i+n+success_window, ['Date', 'MA_20', 'Close']])
     return trigger
 
-def trigger_20wma_increase(symbol, index, n, success_window=None):
+def trigger_20wma_increase(symbol, index, n, success_window=0):
     """
     If the symbol has been above 10 week ma for n weeks, trigger a buying signal.
     """
@@ -156,7 +156,7 @@ def trigger_20wma_increase(symbol, index, n, success_window=None):
             trigger.append(df.ix[i+n:i+n+success_window, ['Date', 'MA_20', 'Close']])
     return trigger
 
-def trigger_w_peak_touch(symbol, index, n, period, success_window=None):
+def trigger_w_peak_touch(symbol, index, n, period, success_window=0):
     """
     If the symbol weekly close has touched peak n times during last "period" weeks
     """

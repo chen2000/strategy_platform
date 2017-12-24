@@ -15,7 +15,7 @@ trading:
     sp500: 'sp500_d_trading'
     dow30: 'dow30_d_trading'
 folder:
-  symbol: 'data'
+  symbol: 'static_data'
   trading: 'data'
-  results: 'data/results'
+  results: 'data'
   plots: 'plots'

@@ -98,11 +98,11 @@ def trigger_symbol_stats(symbol, index, a, b, success_window):
     stats_table.append(['trigger_bband_downbreak', symbol] + list(stats))
     trigger_table += [['trigger_bband_downbreak', symbol, ele.iloc[0].Date, (ele.iloc[-1].Close-ele.iloc[0].Close)/ele.iloc[0].Close] for ele in trigger]
 
-    weekly_success_window = 0
-    trigger = triggers.trigger_20wma_increase(symbol, index, 10, weekly_success_window)
-    stats = success_rate(trigger, weekly_success_window)
-    stats_table.append(['trigger_20wma_increase', symbol] + list(stats))
-    trigger_table += [['trigger_20wma_increase', symbol, ele.iloc[0].Date, (ele.iloc[-1].Close-ele.iloc[0].Close)/ele.iloc[0].Close] for ele in trigger]
+    # weekly_success_window = 0
+    # trigger = triggers.trigger_20wma_increase(symbol, index, 10, weekly_success_window)
+    # stats = success_rate(trigger, weekly_success_window)
+    # stats_table.append(['trigger_20wma_increase', symbol] + list(stats))
+    # trigger_table += [['trigger_20wma_increase', symbol, ele.iloc[0].Date, (ele.iloc[-1].Close-ele.iloc[0].Close)/ele.iloc[0].Close] for ele in trigger]
 
     with open(os.path.join(settings['folder']['results'], symbol + '_stats.csv'), 'wt') as csvfile:
         csv.writer(csvfile, delimiter=",").writerows(stats_table)
