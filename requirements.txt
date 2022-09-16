@@ -21,7 +21,7 @@ ipython-genutils==0.2.0
 itsdangerous==0.24
 Jinja2==2.9.6
 kombu==4.0.2
-Mako==1.0.6
+Mako==1.2.2
 MarkupSafe==1.0
 matplotlib==2.0.2
 numpy==1.13.0
